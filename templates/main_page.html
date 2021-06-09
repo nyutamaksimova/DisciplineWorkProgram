@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block body %}
+<h1> Парсинг рабочей программы</h1>
+<form method="post" action="/content" >
+    <input type="number" class="form-control" name="number" id="number" placeholder="Введите номер РПД"><br>
+</form>
+{% endblock %}
