@@ -97,16 +97,21 @@ def access(doc, heading):
 def feed_content(file):
     doc = read_docx(file)
     parsing = parse(doc)
+
     data = dict()
     for x in parsing:
+
         data[x] = {
             "title": parsing[x].heading,
             "text": parsing[x].content
         }
+        '''''
     tables = parse_tables(file)
+    data['table'] = list()
     for x in tables:
         for i in x:
-            data["table"] = data["table"].append(i)
+            data['table'].append(i)
+'''''
     return data
 
 
@@ -121,10 +126,12 @@ def feed_structure(file):
 
 def feed(file):
     data = feed_structure(file)
+
     data1 = feed_content(file)
-    with open("results_structure\\" + file[5:-5] + "_structure.json", "w", encoding='utf-8') as write_file:
+
+    with open("results_structure\\" + file[20:-5] + "_structure.json", "w", encoding='utf-8') as write_file:
         json.dump(data, write_file, indent=4, ensure_ascii=False)
-    with open("results_content\\" + file[5:-5] + "_content.json", "w", encoding='utf-8') as write_file:
+    with open("results_content\\" + file[20:-5] + "_content.json", "w", encoding='utf-8') as write_file:
         json.dump(data1, write_file, indent=4, ensure_ascii=False)
 
 '''''
@@ -140,7 +147,10 @@ def template(file):
 
 if __name__ == '__main__':
 
-    for f in os.listdir('data\\'):
-        feed('data\\' + f)
+    for f in os.listdir('Программы дисциплин/'):
+        print(f)
+        feed('Программы дисциплин/' + f)
+
+
 
 
